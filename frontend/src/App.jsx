@@ -15,11 +15,11 @@ function App() {
         <HeaderMegaMenu/>
         <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/profile' element={<Profile />} />
             <Route path='/login' element={<LoginPage/>} />
+             <Route path='/url/shortener' element={<ShortenUrl/>} />
+             <Route path='/url/list' element={<MyUrls/>} />
             <Route element={<PrivateRoute/>}>
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/url/shortener' element={<ShortenUrl/>} />
-              <Route path='/url/list' element={<MyUrls/>} />
             </Route>
         </Routes>
     </Router>

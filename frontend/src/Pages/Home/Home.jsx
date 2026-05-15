@@ -2,7 +2,6 @@ import {
   Button,
   Center,
   Container,
-  Stack,
   Text,
   Title,
 } from "@mantine/core";
@@ -53,7 +52,7 @@ const Home = () => {
               marginTop: "1rem",
             }}
           >
-            Your Abhishek-Url-Shortner
+             Abhishek-Url-Shortner
           </Title>
 
           <Text

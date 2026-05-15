@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { protect } from "../middlewares/authMiddleware.js";
 import { createShortUrl, redirectToOriginalURL } from "../controllers/shortUrlController.js";
+
 const shortURLRouter = Router();
 
 

@@ -1,9 +1,10 @@
 import { Button, TextInput } from '@mantine/core'
+import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import Service from '../../utils/http.js'
 
 
-export default function Input({setResponse}) {
+export default function Input({ setResponse }) {
    const service = new Service();
    const [payload, setPayload] = useState(
        {
@@ -38,9 +39,13 @@ export default function Input({setResponse}) {
                    setPayload( { ...payload ,originalUrl:e.target.value } )
                }}
            />
-           <Button disabled={ payload.originalUrl == "" } onClick={(e) => {
+           <Button disabled={ payload.originalUrl == "" } onClick={() => {
                generateShortCode()
            }} variant="filled" color="green">Shorten Url</Button>
        </div>
    )
+}
+
+Input.propTypes = {
+  setResponse: PropTypes.func.isRequired,
 }

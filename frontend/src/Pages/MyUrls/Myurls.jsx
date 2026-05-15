@@ -5,14 +5,13 @@ import { Table } from '@mantine/core';
 
 export default function MyUrls() {
    const [data, setData] = useState(null)
-   const service = new Service();
 
-
-   async function getData() {
-       const response = await service.get("user/my/urls?page=1&limit=10")
-       setData(response)
-   }
    useEffect(() => {
+       const service = new Service();
+       const getData = async () => {
+           const response = await service.get("user/my/urls?page=1&limit=10")
+           setData(response)
+       }
        getData()
    }, [])
    const rows = data?.shortURLs?.map((element) => (

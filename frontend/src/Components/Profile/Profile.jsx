@@ -1,25 +1,43 @@
-import { Avatar } from '@mantine/core'
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { Avatar, Container, Text, Stack } from '@mantine/core'
+import Service from '../../utils/http'
 
 export default function Profile() {
+  const [data, setData] = useState(null)
 
+  useEffect(() => {
+    const service = new Service()
 
-   const dummy = {
-       name: "Bhogavalli Abhishek",
-       email: "abhishek@example.com",
-       id: "1234567890",
-       avatar: "https://avatars.githubusercontent.com/u/1234567890?v=4"
-   }
+    const getProfile = async () => {
+      try {
+        const response = await service.get('user/me')
+        setData(response)
+      } catch (error) {
+        console.error('Failed to fetch profile:', error)
+      }
+    }
 
+    getProfile()
+  }, [])
 
- return (
-   <div>
-     <Avatar src={dummy.avatar} />
-     <h2>{dummy.name}</h2>
-     <p>{dummy.email}</p>
-     <p>ID: {dummy.id}</p>
-   </div>
- )
+  if (!data) {
+    return (
+      <Container size="md">
+        <Stack h={300} bg="var(--mantine-color-body)" align="center" justify="center" gap="md">
+          <Text>Loading profile...</Text>
+        </Stack>
+      </Container>
+    )
+  }
+
+  return (
+    <Container size="md">
+      <Stack h={300} bg="var(--mantine-color-body)" align="center" justify="center" gap="md">
+        <Avatar src={data.avatar} size="xl" alt="Profile avatar" />
+        <Text c="red" fw={700}>{data.name}</Text>
+        <Text>{data._id}</Text>
+        <Text>{data.email}</Text>
+      </Stack>
+    </Container>
+  )
 }
-// https://url-shortener-bootcamp.onrender.com/url/shortener

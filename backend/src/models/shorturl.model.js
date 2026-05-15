@@ -1,6 +1,5 @@
 // TypeScript with Mongoose
 import { Schema, model } from "mongoose";
-
 const shortURLSchema = new Schema(
   {
     originalUrl: { type: String, required: true },
